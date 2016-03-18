@@ -14,6 +14,8 @@
 
 @property (nonatomic,strong) NSArray *tempArray;
 
+@property (nonatomic,strong) UILabel *label;
+
 @end
 
 static NSString * ID = @"yu";
@@ -40,6 +42,11 @@ static NSString * ID = @"yu";
    [collectionView registerClass:[YUCollectionViewCell class] forCellWithReuseIdentifier:ID];
     
     collectionView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"img_01"]];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 400, 150, 50)];
+    self.label = titleLabel;
+    titleLabel.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:titleLabel];
 }
 
 //实现一个item 一个item的滑动
@@ -68,6 +75,11 @@ static NSString * ID = @"yu";
     YUCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     
     cell.title = self.tempArray[indexPath.item];
+    
+    __weak typeof(self) weakSelf = self;
+    cell.btnBlock = ^(NSString *title){
+        weakSelf.label.text = [NSString stringWithFormat:@"点击了第%@按钮",title];
+    };
     
     cell.backgroundColor = [UIColor clearColor];
     

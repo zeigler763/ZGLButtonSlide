@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^buttonBlock)(NSString *);
+
 @interface YUCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic,copy) NSString *title;
+
+@property (nonatomic,copy) buttonBlock btnBlock;
 
 @end

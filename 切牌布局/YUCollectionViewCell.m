@@ -29,7 +29,9 @@
 }
 
 - (void)sendMessage:(UIButton *)textBtn{
-    NSLog(@"%@",textBtn.titleLabel.text);
+    if (self.btnBlock) {
+        self.btnBlock(textBtn.titleLabel.text);
+    }
 }
 
 - (void)setTitle:(NSString *)title{
